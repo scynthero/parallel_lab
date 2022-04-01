@@ -7,3 +7,4 @@ edition = "2021"
 
 [dependencies]
 mpi = { git = "https://github.com/rsmpi/rsmpi.git" }
+rand = "0.8.5"
