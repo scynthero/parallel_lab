@@ -12,9 +12,18 @@ fn main() {
         let mut buf: i64 = 0;
         world.any_process().receive_into(&mut buf);
         println!("Rank {} received number: {}", world.rank(), buf);
+
+        buf += 3;
+        println!("Sending number {} from rank {}", buf, world.rank());
+        world.process_at_rank(0).send(&buf);
+
     } else {
         let number_to_send = 15;
         println!("Sending number {} from rank {}", number_to_send, world.rank());
         world.process_at_rank(1).send(&number_to_send);
+
+        let mut buf: i64 = 0;
+        world.any_process().receive_into(&mut buf);
+        println!("Rank {} received number: {}", world.rank(), buf);
     }
 }
